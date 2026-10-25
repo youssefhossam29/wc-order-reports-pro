@@ -1,0 +1,719 @@
+/**
+ * WC Order Reports Pro - Admin Styles
+ * Modern, clean design with RTL support
+ */
+
+/* ============================
+   Main Container
+   ============================ */
+.wcorp-admin-wrap {
+  background: #f5f5f5;
+  padding: 20px;
+  margin: 20px 0 20px 0;
+}
+
+.wcorp-main-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #1e293b;
+}
+
+.wcorp-main-title .dashicons {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: #3b82f6;
+}
+
+/* ============================
+   Filters Section
+   ============================ */
+.wcorp-filters-section {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.wcorp-date-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.wcorp-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wcorp-filter-group label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #475569;
+}
+
+.wcorp-filter-group input[type="date"] {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 160px;
+}
+
+.wcorp-date-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1 1 100%;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.wcorp-preset-btn {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wcorp-preset-btn:hover {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.wcorp-export-section {
+  display: flex;
+  gap: 8px;
+}
+
+.wcorp-export-section .button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ============================
+   Reports Container
+   ============================ */
+.wcorp-reports-container {
+  display: grid;
+  gap: 24px;
+}
+
+.wcorp-report-section {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.wcorp-report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.wcorp-report-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.wcorp-report-header .dashicons {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.wcorp-refresh-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.wcorp-refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(180deg);
+}
+
+.wcorp-report-content {
+  padding: 24px;
+}
+
+/* ============================
+   Loading State
+   ============================ */
+.wcorp-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+  font-size: 16px;
+  position: relative;
+}
+
+.wcorp-loading::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: wcorp-spin 0.8s linear infinite;
+  margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes wcorp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================
+   Enhanced Design Improvements
+   ============================ */
+
+/* Better spacing and typography */
+.wcorp-main-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #1e293b;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wcorp-main-title .dashicons {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #3b82f6;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+/* Enhanced report headers */
+.wcorp-report-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.wcorp-report-header h2 .dashicons {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #3b82f6;
+}
+
+/* Better button styling */
+.wcorp-refresh-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  border: none !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3) !important;
+}
+
+.wcorp-refresh-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4) !important;
+}
+
+.wcorp-refresh-btn.rotating .dashicons {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced metric cards */
+.wcorp-metric-card {
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.wcorp-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.wcorp-metric-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 8px 0;
+}
+
+.wcorp-metric-label {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced tables */
+.wcorp-report-table {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.wcorp-report-table th {
+  background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+  color: #475569;
+  font-weight: 600;
+  padding: 16px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.wcorp-report-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+.wcorp-report-table tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Enhanced loading states */
+.wcorp-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-radius: 12px;
+  border: 2px dashed #cbd5e1;
+}
+
+.wcorp-loading::before {
+  content: "⏳";
+  display: block;
+  font-size: 32px;
+  margin-bottom: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Enhanced error states */
+.wcorp-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #dc2626;
+  font-size: 16px;
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.wcorp-error::before {
+  content: "⚠️";
+  display: block;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.wcorp-no-data {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.wcorp-no-data::before {
+  content: "📊";
+  display: block;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+/* Enhanced export section */
+.wcorp-export-section {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin: 20px 0;
+}
+
+.wcorp-export-section .button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3) !important;
+}
+
+.wcorp-export-section .button:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* Enhanced cache info */
+.wcorp-cache-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.wcorp-cache-info .button {
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  border: none !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+}
+
+.wcorp-cache-info .button:hover {
+  background: linear-gradient(135deg, #d97706, #b45309) !important;
+  transform: translateY(-1px) !important;
+}
+
+.wcorp-cache-note {
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Print button styling */
+.wcorp-print-btn {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  border: none !important;
+  color: white !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+}
+
+.wcorp-print-btn:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.4) !important;
+}
+
+.wcorp-print-btn:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3) !important;
+}
+
+.wcorp-print-btn .dashicons {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================
+   Tables
+   ============================ */
+.wcorp-report-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 16px 0;
+}
+
+.wcorp-report-table thead tr {
+  background: #f8fafc;
+}
+
+.wcorp-report-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #475569;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.wcorp-report-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #1e293b;
+}
+
+.wcorp-report-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ============================
+   Metrics & Stats
+   ============================ */
+.wcorp-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.wcorp-metric-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+}
+
+.wcorp-metric-label {
+  font-size: 13px;
+  opacity: 0.9;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.wcorp-metric-value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.wcorp-metric-change {
+  font-size: 12px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+/* ============================
+   Charts
+   ============================ */
+.wcorp-chart-container {
+  position: relative;
+  height: 300px;
+  margin: 24px 0;
+}
+
+.wcorp-chart-wrapper {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* ============================
+   Cache Info
+   ============================ */
+.wcorp-cache-info {
+  background: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wcorp-cache-note {
+  color: #64748b;
+  font-size: 13px;
+}
+
+/* ============================
+   Comparison Tables
+   ============================ */
+.wcorp-comparison-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.wcorp-comparison-cell {
+  background: white;
+  padding: 16px;
+}
+
+.wcorp-comparison-header {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.wcorp-comparison-metric {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 4px;
+}
+
+/* ============================
+   Print Styles
+   ============================ */
+@media print {
+  .wcorp-admin-wrap {
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .wcorp-filters-section,
+  .wcorp-export-section,
+  .wcorp-cache-info,
+  .wcorp-refresh-btn,
+  .wcorp-print-btn {
+    display: none !important;
+  }
+
+  .wcorp-report-section {
+    page-break-inside: avoid;
+    margin-bottom: 30px;
+  }
+
+  .wcorp-metric-card {
+    background: white !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+
+  .wcorp-report-table {
+    background: white !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+
+  .wcorp-main-title {
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+
+  .wcorp-report-header h2 {
+    color: #000 !important;
+  }
+}
+[dir="rtl"] .wcorp-main-title,
+[dir="rtl"] .wcorp-report-header h2 {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .wcorp-date-filter {
+  direction: rtl;
+}
+
+[dir="rtl"] .wcorp-report-table th,
+[dir="rtl"] .wcorp-report-table td {
+  text-align: right;
+}
+
+/* ============================
+   Responsive Design
+   ============================ */
+@media (max-width: 782px) {
+  .wcorp-filters-section {
+    flex-direction: column;
+  }
+
+  .wcorp-date-filter {
+    width: 100%;
+  }
+
+  .wcorp-export-section {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .wcorp-export-section .button {
+    flex: 1;
+  }
+
+  .wcorp-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wcorp-comparison-table {
+    grid-template-columns: 1fr;
+  }
+}
