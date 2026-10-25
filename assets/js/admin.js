@@ -174,7 +174,8 @@
             html += '<div class="wcorp-metrics-grid">';
             html += `<div class="wcorp-metric-card">
                 <div class="wcorp-metric-label">Total Orders</div>
-                <div class="wcorp-metric-value">${data.total_orders || 0}</div>
+                <div class="wcorp-metric-value">${data.total_orders || 0} <span style="font-size: 18px; font-weight: normal; opacity: 0.9;">(${this.formatCurrency(data.total_amount || 0)})</span></div>
+                <div class="wcorp-metric-change">Total Revenue: ${this.formatCurrency(data.total_amount || 0)}</div>
             </div>`;
             html += `<div class="wcorp-metric-card">
                 <div class="wcorp-metric-label">Avg Processing Time</div>
@@ -186,20 +187,35 @@
             // Status table
             if (data.status_counts && Object.keys(data.status_counts).length > 0) {
                 html += '<table class="wcorp-report-table">';
-                html += '<thead><tr><th>Order Status</th><th>Count</th><th>Percentage</th></tr></thead>';
+                html += '<thead><tr><th>Order Status</th><th>Count</th><th>Count %</th><th>Total Amount</th><th>Amount %</th></tr></thead>';
                 html += '<tbody>';
 
                 for (const [status, count] of Object.entries(data.status_counts)) {
-                    const percentage = data.total_orders > 0 ? ((count / data.total_orders) * 100).toFixed(1) : '0.0';
+                    const countPercentage = data.total_orders > 0 ? ((count / data.total_orders) * 100).toFixed(1) : '0.0';
+                    const amount = (data.status_totals && data.status_totals[status]) ? data.status_totals[status] : 0;
+                    const amountPercentage = data.total_amount > 0 ? ((amount / data.total_amount) * 100).toFixed(1) : '0.0';
                     const cleanStatus = status.replace('wc-', '').replace(/_/g, ' ').toUpperCase();
+
                     html += `<tr>
                         <td>${cleanStatus}</td>
-                    <td><strong>${count}</strong></td>
-                    <td>${percentage}%</td>
-                </tr>`;
+                        <td><strong>${count}</strong></td>
+                        <td>${countPercentage}%</td>
+                        <td><strong>${this.formatCurrency(amount)}</strong></td>
+                        <td>${amountPercentage}%</td>
+                    </tr>`;
                 }
 
-                html += '</tbody></table>';
+                html += '</tbody>';
+                html += `<tfoot>
+                    <tr style="font-weight: bold; background: rgba(0, 0, 0, 0.03);">
+                        <td>Total</td>
+                        <td>${data.total_orders || 0}</td>
+                        <td>100%</td>
+                        <td>${this.formatCurrency(data.total_amount || 0)}</td>
+                        <td>100%</td>
+                    </tr>
+                </tfoot>`;
+                html += '</table>';
             } else {
                 html += '<div class="wcorp-no-data">No order status data available for the selected period</div>';
             }
@@ -558,10 +574,17 @@
         },
 
         formatCurrency: function (amount) {
-            return new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(amount);
+            const currency = (window.wcorpData && window.wcorpData.currency) ? window.wcorpData.currency : 'EGP';
+            try {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency,
+                    maximumFractionDigits: 2
+                }).format(amount);
+            } catch (e) {
+                const symbol = (window.wcorpData && window.wcorpData.currencySymbol) ? window.wcorpData.currencySymbol : 'EGP';
+                return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + symbol;
+            }
         },
 
         // Add keyboard shortcuts

@@ -389,7 +389,7 @@
 }
 
 .wcorp-no-data::before {
-  content: "📊";
+  content: "\1F4CA";
   display: block;
   font-size: 32px;
   margin-bottom: 16px;

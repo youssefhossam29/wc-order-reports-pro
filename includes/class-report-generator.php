@@ -126,12 +126,16 @@ class WC_Order_Reports_Generator
         $orders = $this->get_orders_in_range($from_dt, $to_dt);
 
         $status_counts = array();
+        $status_totals = array();
+        $total_amount = 0.0;
         $durations = array();
         $total_orders = count($orders);
 
         if ($total_orders === 0) {
             return array(
                 'status_counts' => array(),
+                'status_totals' => array(),
+                'total_amount' => 0.0,
                 'avg_confirm_to_ready_seconds' => 0,
                 'num_samples' => 0,
                 'total_orders' => 0,
@@ -148,11 +152,15 @@ class WC_Order_Reports_Generator
             }
 
             $status = 'wc-' . $order->get_status();
+            $order_total = floatval($order->get_total());
+            $total_amount += $order_total;
 
             if (!isset($status_counts[$status])) {
                 $status_counts[$status] = 0;
+                $status_totals[$status] = 0.0;
             }
             $status_counts[$status]++;
+            $status_totals[$status] += $order_total;
 
             // Calculate confirm → ready duration using multiple methods
             $duration = $this->calculate_processing_duration($order);
@@ -165,6 +173,8 @@ class WC_Order_Reports_Generator
 
         return array(
             'status_counts' => $status_counts,
+            'status_totals' => $status_totals,
+            'total_amount' => $total_amount,
             'avg_confirm_to_ready_seconds' => $avg_seconds,
             'num_samples' => count($durations),
             'total_orders' => $total_orders,

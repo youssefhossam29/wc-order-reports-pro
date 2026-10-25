@@ -204,9 +204,11 @@ class WC_Order_Reports_Pro
 
         // Localize script
         wp_localize_script('wc-order-reports-pro-admin', 'wcorpData', array(
-            'ajaxUrl'  => admin_url('admin-ajax.php'),
-            'nonce'    => wp_create_nonce('wcorp_nonce'),
-            'features' => $this->get_enabled_features(),
+            'ajaxUrl'        => admin_url('admin-ajax.php'),
+            'nonce'          => wp_create_nonce('wcorp_nonce'),
+            'features'       => $this->get_enabled_features(),
+            'currency'       => function_exists('get_woocommerce_currency') ? get_woocommerce_currency() : 'EGP',
+            'currencySymbol' => function_exists('get_woocommerce_currency_symbol') ? html_entity_decode(get_woocommerce_currency_symbol()) : 'EGP',
         ));
     }
 

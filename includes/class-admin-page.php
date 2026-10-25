@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_Order_Reports_Admin_Page {
 
-    private $plugin;
+    public $plugin;
 
     public function __construct( $plugin ) {
         $this->plugin = $plugin;

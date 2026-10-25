@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 <div class="wrap wcorp-admin-wrap">
     <h1 class="wcorp-main-title">
         <span class="dashicons dashicons-chart-area"></span>
-        <?php esc_html_e('📊 تقارير الطلبات المتقدمة', 'wc-order-reports-pro'); ?>
+        <?php esc_html_e('تقارير الطلبات المتقدمة', 'wc-order-reports-pro'); ?>
         <button class="button wcorp-print-btn" style="margin-left: 20px;" onclick="window.print(); return false;">
             <span class="dashicons dashicons-printer"></span>
             <?php esc_html_e('طباعة', 'wc-order-reports-pro'); ?>
@@ -76,7 +76,7 @@ if (!defined('ABSPATH')) {
             <div class="wcorp-report-header">
                 <h2>
                     <span class="dashicons dashicons-calendar-alt"></span>
-                    <?php esc_html_e('📊 تقرير الحالة اليومية', 'wc-order-reports-pro'); ?>
+                    <?php esc_html_e('تقرير الحالة اليومية', 'wc-order-reports-pro'); ?>
                 </h2>
                 <button class="button wcorp-refresh-btn" data-report="daily_status">
                     <span class="dashicons dashicons-update"></span>
@@ -93,7 +93,7 @@ if (!defined('ABSPATH')) {
             <div class="wcorp-report-header">
                 <h2>
                     <span class="dashicons dashicons-admin-site"></span>
-                    <?php esc_html_e('🚚 تقرير أداء بوسطة', 'wc-order-reports-pro'); ?>
+                    <?php esc_html_e('تقرير أداء بوسطة', 'wc-order-reports-pro'); ?>
                 </h2>
                 <button class="button wcorp-refresh-btn" data-report="bosta">
                     <span class="dashicons dashicons-update"></span>
@@ -110,7 +110,7 @@ if (!defined('ABSPATH')) {
             <div class="wcorp-report-header">
                 <h2>
                     <span class="dashicons dashicons-money-alt"></span>
-                    <?php esc_html_e('💰 التقرير المالي COD', 'wc-order-reports-pro'); ?>
+                    <?php esc_html_e('التقرير المالي COD', 'wc-order-reports-pro'); ?>
                 </h2>
                 <button class="button wcorp-refresh-btn" data-report="cod">
                     <span class="dashicons dashicons-update"></span>
@@ -127,7 +127,7 @@ if (!defined('ABSPATH')) {
             <div class="wcorp-report-header">
                 <h2>
                     <span class="dashicons dashicons-groups"></span>
-                    <?php esc_html_e('👤 مقارنة أداء المندوب مع بوسطة', 'wc-order-reports-pro'); ?>
+                    <?php esc_html_e('مقارنة أداء المندوب مع بوسطة', 'wc-order-reports-pro'); ?>
                 </h2>
                 <button class="button wcorp-refresh-btn" data-report="agent">
                     <span class="dashicons dashicons-update"></span>

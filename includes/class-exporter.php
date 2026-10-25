@@ -66,14 +66,30 @@ class WC_Order_Reports_Exporter
         // Header
         fputcsv($output, array('WC Order Reports - Daily Status'));
         fputcsv($output, array('Date Range', $data['date_range']['from'] . ' to ' . $data['date_range']['to']));
+        fputcsv($output, array('Total Orders', $data['total_orders']));
+        fputcsv($output, array('Total Revenue', number_format($data['total_amount'] ?? 0, 2)));
         fputcsv($output, array());
 
-        // Status counts
-        fputcsv($output, array('Order Status', 'Count'));
+        // Status counts and amounts
+        fputcsv($output, array('Order Status', 'Count', 'Count %', 'Total Amount', 'Amount %'));
+        $total_orders = $data['total_orders'] ?? 0;
+        $total_amount = $data['total_amount'] ?? 0.0;
+
         foreach ($data['status_counts'] as $status => $count) {
-            fputcsv($output, array($status, $count));
+            $count_pct = $total_orders > 0 ? round(($count / $total_orders) * 100, 1) . '%' : '0.0%';
+            $amount = isset($data['status_totals'][$status]) ? floatval($data['status_totals'][$status]) : 0.0;
+            $amount_pct = $total_amount > 0 ? round(($amount / $total_amount) * 100, 1) . '%' : '0.0%';
+
+            fputcsv($output, array(
+                str_replace('wc-', '', $status),
+                $count,
+                $count_pct,
+                number_format($amount, 2),
+                $amount_pct,
+            ));
         }
 
+        fputcsv($output, array('Total', $total_orders, '100%', number_format($total_amount, 2), '100%'));
         fputcsv($output, array());
         fputcsv($output, array('Average Confirm to Ready Time', WC_Order_Reports_Generator::seconds_to_human($data['avg_confirm_to_ready_seconds'])));
         fputcsv($output, array('Samples', $data['num_samples']));
@@ -180,13 +196,29 @@ class WC_Order_Reports_Exporter
     {
         $this->excel_row(array('WC Order Reports - Daily Status'), true);
         $this->excel_row(array('Date Range: ' . $data['date_range']['from'] . ' to ' . $data['date_range']['to']));
+        $this->excel_row(array('Total Orders: ' . $data['total_orders']));
+        $this->excel_row(array('Total Revenue: ' . number_format($data['total_amount'] ?? 0, 2)));
         $this->excel_row(array());
 
-        $this->excel_row(array('Order Status', 'Count'), true);
+        $this->excel_row(array('Order Status', 'Count', 'Count %', 'Total Amount', 'Amount %'), true);
+        $total_orders = $data['total_orders'] ?? 0;
+        $total_amount = $data['total_amount'] ?? 0.0;
+
         foreach ($data['status_counts'] as $status => $count) {
-            $this->excel_row(array($status, $count));
+            $count_pct = $total_orders > 0 ? round(($count / $total_orders) * 100, 1) . '%' : '0.0%';
+            $amount = isset($data['status_totals'][$status]) ? floatval($data['status_totals'][$status]) : 0.0;
+            $amount_pct = $total_amount > 0 ? round(($amount / $total_amount) * 100, 1) . '%' : '0.0%';
+
+            $this->excel_row(array(
+                str_replace('wc-', '', $status),
+                $count,
+                $count_pct,
+                number_format($amount, 2),
+                $amount_pct,
+            ));
         }
 
+        $this->excel_row(array('Total', $total_orders, '100%', number_format($total_amount, 2), '100%'), true);
         $this->excel_row(array());
         $this->excel_row(array('Average Confirm to Ready Time', WC_Order_Reports_Generator::seconds_to_human($data['avg_confirm_to_ready_seconds'])));
         $this->excel_row(array('Samples', $data['num_samples']));

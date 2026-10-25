@@ -14,9 +14,14 @@
 
 ### 1. Daily Status Report (`daily_status`)
 * Comprehensive view of daily store operations across all WooCommerce order statuses.
-* Order volume metrics, counts, and percentage distribution per status.
+* Metrics card displaying total order volume alongside **total revenue value** formatted in store currency.
+* Status breakdown table with dual financial and volumetric metrics:
+  * Order Count and Count Percentage per status.
+  * **Total Monetary Value (Total Amount)** and **Revenue Share (Amount %)** per status.
+  * Comprehensive summary footer row with 100% reconciliation totals.
 * Accurate order preparation turnaround calculation (**Confirm Preparing to Ready for Shipping**).
 * Visual status breakdown powered by Chart.js.
+* Full CSV and Excel export support with complete financial metrics.
 
 ### 2. Bosta Logistics Performance (`bosta`)
 * Native tracking analytics tailored for **Bosta Shipping** integration.
