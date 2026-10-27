@@ -525,8 +525,8 @@ class WC_Order_Reports_Generator
             }
 
             // Check if order has agent status timestamps (indicating it went through agent shipping)
-            $ready_ship_agent_ts = get_post_meta($order->get_id(), '_status_changed_ready_ship_agent_at', true);
-            $handed_to_agent_ts = get_post_meta($order->get_id(), '_status_changed_handed_to_agent_at', true);
+            $ready_ship_agent_ts = $order->get_meta('_status_changed_ready_ship_agent_at', true);
+            $handed_to_agent_ts  = $order->get_meta('_status_changed_handed_to_agent_at', true);
 
             // If order has either timestamp, it's an agent order
             if ($ready_ship_agent_ts || $handed_to_agent_ts) {

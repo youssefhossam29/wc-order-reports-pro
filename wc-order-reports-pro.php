@@ -3,7 +3,7 @@
  * Plugin Name: WC Order Reports Pro (Bosta & WooCommerce)
  * Plugin URI: https://github.com/youssefhossam29/wc-order-reports-pro
  * Description: Advanced order tracking with reports, charts, exports, and performance analytics for WooCommerce & Bosta
- * Version: 2.2.0
+ * Version: 2.3.0
  * Author: Youssef Hossam
  * Author URI: https://github.com/youssefhossam29
  * Text Domain: wc-order-reports-pro
@@ -20,12 +20,31 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('WC_ORDER_REPORTS_PRO_VERSION', '2.2.0');
+define('WC_ORDER_REPORTS_PRO_VERSION', '2.3.0');
 define('WC_ORDER_REPORTS_PRO_PATH', plugin_dir_path(__FILE__));
 define('WC_ORDER_REPORTS_PRO_URL', plugin_dir_url(__FILE__));
 
-// Load core plugin class
-require_once WC_ORDER_REPORTS_PRO_PATH . 'includes/class-wc-order-reports-pro.php';
+// Declare compatibility with WooCommerce HPOS (High-Performance Order Storage)
+add_action('before_woocommerce_init', function () {
+    if (class_exists(\Automattic\WooCommerce\Utilities\FeaturesUtil::class)) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility('custom_order_tables', __FILE__, true);
+    }
+});
 
-// Initialize plugin
-add_action('plugins_loaded', array('WC_Order_Reports_Pro', 'init'));
+// Initialize plugin with WooCommerce dependency guard
+add_action('plugins_loaded', function () {
+    if (!class_exists('WooCommerce')) {
+        add_action('admin_notices', function () {
+            ?>
+            <div class="notice notice-error is-dismissible">
+                <p><strong><?php esc_html_e('WC Order Reports Pro requires WooCommerce to be installed and active.', 'wc-order-reports-pro'); ?></strong></p>
+            </div>
+            <?php
+        });
+        return;
+    }
+
+    // Load core plugin class
+    require_once WC_ORDER_REPORTS_PRO_PATH . 'includes/class-wc-order-reports-pro.php';
+    WC_Order_Reports_Pro::init();
+});

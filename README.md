@@ -3,7 +3,7 @@
 [![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-blue.svg)](https://wordpress.org/)
 [![WooCommerce](https://img.shields.io/badge/WooCommerce-5.0%2B-purple.svg)](https://woocommerce.com/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-indigo.svg)](https://php.net/)
-[![Version](https://img.shields.io/badge/Version-2.2.0-emerald.svg)](https://github.com/youssefhossam29/wc-order-reports-pro)
+[![Version](https://img.shields.io/badge/Version-2.3.0-emerald.svg)](https://github.com/youssefhossam29/wc-order-reports-pro)
 [![License](https://img.shields.io/badge/License-GPLv2-orange.svg)](LICENSE)
 
 **WC Order Reports Pro** is an enterprise-grade WooCommerce extension engineered for high-volume e-commerce stores, fulfillment centers, and Cash on Delivery (COD) operations. It bridges the gap between WooCommerce order management, shipping logistics (featuring dedicated Bosta integration), delivery agent benchmarking, and financial profit reporting.

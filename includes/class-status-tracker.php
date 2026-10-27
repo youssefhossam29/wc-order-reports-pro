@@ -22,25 +22,28 @@ class WC_Order_Reports_Status_Tracker {
             return;
         }
 
+        $order = $order instanceof WC_Order ? $order : wc_get_order( $order_id );
+        if ( ! $order ) {
+            return;
+        }
+
         $now = current_time( 'mysql' );
 
         // Normalize status names
         $clean_new = $this->meta_status_key( $new_status );
         $meta_key = '_status_changed_' . $clean_new . '_at';
 
-        // Save timestamp
-        update_post_meta( $order_id, $meta_key, $now );
-
-        // Store last status change
-        update_post_meta( $order_id, '_last_status_changed_at', $now );
-        update_post_meta( $order_id, '_last_status', $new_status );
+        // Save timestamp & last status details
+        $order->update_meta_data( $meta_key, $now );
+        $order->update_meta_data( '_last_status_changed_at', $now );
+        $order->update_meta_data( '_last_status', $new_status );
 
         // Store transition history (JSON array)
-        $history = get_post_meta( $order_id, '_status_history', true );
+        $history = $order->get_meta( '_status_history', true );
         if ( ! $history ) {
             $history = array();
         } else {
-            $history = json_decode( $history, true );
+            $history = is_array( $history ) ? $history : json_decode( $history, true );
         }
 
         $history[] = array(
@@ -50,7 +53,8 @@ class WC_Order_Reports_Status_Tracker {
             'user_id' => get_current_user_id(),
         );
 
-        update_post_meta( $order_id, '_status_history', wp_json_encode( $history ) );
+        $order->update_meta_data( '_status_history', wp_json_encode( $history ) );
+        $order->save();
 
         // Clear cache for this order
         $this->clear_order_cache( $order_id );
@@ -72,21 +76,29 @@ class WC_Order_Reports_Status_Tracker {
      * Get status history for an order
      */
     public static function get_order_history( $order_id ) {
-        $history = get_post_meta( $order_id, '_status_history', true );
+        $order = $order_id instanceof WC_Order ? $order_id : wc_get_order( $order_id );
+        if ( ! $order ) {
+            return array();
+        }
+        $history = $order->get_meta( '_status_history', true );
         if ( ! $history ) {
             return array();
         }
-        return json_decode( $history, true );
+        return is_array( $history ) ? $history : json_decode( $history, true );
     }
 
     /**
      * Get timestamp for specific status
      */
     public static function get_status_timestamp( $order_id, $status ) {
+        $order = $order_id instanceof WC_Order ? $order_id : wc_get_order( $order_id );
+        if ( ! $order ) {
+            return '';
+        }
         $clean_status = str_replace( 'wc-', '', $status );
         $clean_status = sanitize_key( $clean_status );
         $meta_key = '_status_changed_' . $clean_status . '_at';
-        return get_post_meta( $order_id, $meta_key, true );
+        return $order->get_meta( $meta_key, true );
     }
 
     /**

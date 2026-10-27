@@ -122,8 +122,13 @@ class WC_Order_Reports_Notifications {
      * Check for delays when order status changes
      */
     public function check_order_delays( $order_id, $old_status, $new_status, $order ) {
+        $order = $order instanceof WC_Order ? $order : wc_get_order( $order_id );
+        if ( ! $order ) {
+            return;
+        }
+
         // Check if order took too long in previous status
-        $last_changed = get_post_meta( $order_id, '_last_status_changed_at', true );
+        $last_changed = $order->get_meta( '_last_status_changed_at', true );
         
         if ( ! $last_changed ) {
             return;
